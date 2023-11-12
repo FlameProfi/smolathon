@@ -1,0 +1,174 @@
+.profile {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: url('./assets/background.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ico {
+    color: white;
+
+    &:hover {
+        color: lightblue;
+    }
+
+    & svg{
+        width: 35px;
+        height: 35px;
+    }
+}
+.card {
+    border-radius: 4px;
+    border: 1px solid white;
+    background: rgba(43, 43, 43, .6);
+}
+.profileStats {
+    border: 1px solid white;
+    border-radius: 4px;
+    background: rgba($color: #000000, $alpha: .6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+
+    &__header {
+        padding: 15px 20px;
+        border-radius: 4px;
+        background: rgba($color: #000000, $alpha: .6);
+        -webkit-backdrop-filter:blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-size: 30px;
+        letter-spacing: 8px;
+        color: white;
+        font-weight: 200;
+        font-family: 'Advent Pro', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+    }
+
+    &__body {
+        display: grid;
+        grid-template-columns: repeat(4, 150px);
+        grid-template-rows: repeat(3, 150px);
+        gap: 20px;
+        padding: 20px;
+        
+        
+
+    }
+
+    .friends {
+        grid-area: 1 / 1 / 3 / 3;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &__header {
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid gray;
+        }
+
+        &__main {
+            padding: 15px;
+            display: flex;
+            justify-content: start;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        &__footer {
+            display: flex;
+            width: 100%;
+            padding: 10px 20px;
+        }
+
+        &__menu {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            cursor: pointer;
+
+            &_item {
+                color: rgba(255, 255, 255, 0.538);
+                font-size: 12px;
+                &:hover {
+                    color: white;
+                }
+            }
+        }
+
+        &__title {
+            font-size: 20px;
+            letter-spacing: 4px;
+            color: rgb(255, 255, 255);
+        }
+    }
+
+    .rating {
+        grid-area: 3 / 1 / 4 / 3;
+        
+    }
+    .stats {
+        grid-area: 2 / 3 / 3 / 4;
+        
+    }
+    .one {
+        grid-area: 1 / 3 / 2 / 5;
+    }
+    .two {
+        grid-area: 2 / 4 / 4 / 5;
+    }
+    .one {
+        grid-area: 1 / 3 / 2 / 5;
+    }
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 15px;
+    background: rgba($color: #000000, $alpha: .3);
+    padding: 10px;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+    border: 1px solid white;
+}
+.content {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+.avatar {
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+}
+
+.username {
+    font-size: 30px;
+    letter-spacing: 8px;
+    color: white;
+
+}
+
+.status {
+    color: gray;
+    font-size: 18px;
+}

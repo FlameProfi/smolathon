@@ -1,0 +1,53 @@
+// Fonts
+$font-family-primary: "Nunito Sans", sans-serif;
+
+// Font-sizes
+$size-xxxs: 12px;
+$size-xxs: 14px;
+$size-xs: 18px;
+$size-s: 20px;
+$size-m: 24px;
+$size-l: 28px;
+$size-xl: 40px;
+$size-xxl: 54px;
+
+
+// Titles 
+
+
+//Colors
+
+$red: rgba(232, 73, 73, 1);
+$green: rgba(76, 191, 87, 1);
+$primary: rgba(133, 182, 255,1);
+$black: rgb(0, 0, 0);
+$text-second:rgba(109, 106, 116, 1);
+$text-third:rgba(190, 187, 194, 1);
+$white: rgba(255, 255, 255, 1);
+$bg-second: rgba(252, 249, 247, 1);
+$bg-black-6: rgba(0, 0, 0, .6);
+$bg-white-3: rgba(255, 255, 255, 0.3);
+//Shadow
+
+$shadow: 14px 10px 86px 5px rgba(0, 0, 0, 0.1);
+
+
+// border
+
+$border: 1px solid $white;
+
+// Transitions 
+
+$transition-main: all 0.2s ease-out;
+$transition-slow: all 0.5s ease-out;
+
+// Breakpoints
+$breakpoint-small-max: 640px !default;
+$breakpoint-medium-max: 1023px !default;
+$breakpoint-large-max: 1199px !default;
+//$breakpoint-xlarge-max: 1600px !default;
+
+$breakpoint-small-min: 640px !default;
+$breakpoint-medium-min: 1024px !default;
+$breakpoint-large-min: 1200px !default;
+//$breakpoint-xlarge-min: 1600px !default;

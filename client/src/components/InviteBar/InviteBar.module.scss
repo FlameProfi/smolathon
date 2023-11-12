@@ -1,0 +1,54 @@
+.inviteBar {
+    height: 100vh;
+    padding: 35px 25px;
+    background: rgba(0, 0, 0, .6);
+    backdrop-filter: blur(4px);
+    border-left: 1px solid white;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    gap: 50px;
+}
+
+
+
+.searchInput {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    padding: 10px 20px 10px 60px;
+    font-weight: 200;
+    letter-spacing: 4px;
+    width: 100%;
+    font-family: 'Advent Pro', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+
+    &:hover {
+
+        &::placeholder {
+            color: rgb(255, 255, 255);
+        }
+    }
+    &::placeholder {
+        color: rgba(255, 255, 255, .6);
+    }
+
+    &:active {
+        
+    }
+    &:focus {
+        outline: none;
+        &::placeholder {
+            color: rgb(255, 255, 255);
+        }
+    }
+    &:active {
+        outline: none;
+    }
+}

@@ -1,0 +1,17 @@
+.friends {
+    width: 100vw;
+    height: 100vh;
+    background: url('../../assets/wall.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.friendsContainer {
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(4px);
+    border: 1px solid white;
+    border-radius: 12px;
+}

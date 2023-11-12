@@ -1,0 +1,36 @@
+.input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    font-weight: 200;
+    letter-spacing: 4px;
+    width: 100%;
+    font-family: 'Advent Pro', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+
+    &:hover {
+
+        &::placeholder {
+            color: rgb(255, 255, 255);
+        }
+    }
+    &::placeholder {
+        color: rgba(255, 255, 255, .6);
+    }
+
+    &:active {
+        
+    }
+    &:focus {
+        outline: none;
+        &::placeholder {
+            color: rgb(255, 255, 255);
+        }
+    }
+    &:active {
+        outline: none;
+    }
+}

@@ -1,0 +1,79 @@
+.lending {
+    width: 100vw;
+    overflow: hidden;
+}
+
+.title {
+    font-size: 100px;
+    letter-spacing: 34px;
+    color: white;
+    text-shadow: 0 0 50px rgba(255,255,255,.8);
+    font-family: 'Sunless Day';
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+    &__item {
+        display: block;
+    }
+}
+
+.subtitle {
+        font-size: 40px;
+        letter-spacing: 6px;
+        color: white;
+        text-shadow: 0 0 50px rgba(255,255,255,.8);
+        font-family: 'Sunless Day';
+
+    
+}
+.button {
+    border: 2px solid white;
+    border-radius: 4px;
+    padding: 6px 90px;
+    font-size: 30px;
+        letter-spacing: 10px;
+        color: white;
+        text-shadow: 0 0 50px rgba(255,255,255,.8);
+        font-family: 'Sunless Day';
+        background: transparent;
+        cursor: pointer;
+
+        &:hover {
+            opacity: .8;
+        }
+}
+.intro {
+    background: url('./assets/intro-background-0.png') no-repeat top left ,url('./assets/intro-background-1.jpg') no-repeat center center;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+   
+
+    
+}
+
+.small_spacing {
+    letter-spacing: 14px;
+    
+}
+
+.registration {
+    width: 100vw;
+    height: 100vh;
+    background:url('./assets/registration-background.jpg') no-repeat top left ;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}

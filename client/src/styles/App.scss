@@ -1,0 +1,29 @@
+@import './variables.scss';
+@import './reset.scss';
+
+@import './mixins.scss';
+@import './fonts.scss';
+
+
+
+
+
+body {
+    font-weight: 200;
+    font-family: 'Advent Pro', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 4px;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+

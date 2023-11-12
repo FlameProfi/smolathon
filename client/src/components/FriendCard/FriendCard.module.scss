@@ -1,0 +1,75 @@
+
+
+.friendCard {
+    border-radius: 990px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    gap: 20px;
+    
+}
+
+.friendCard__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid white;
+    
+    
+    background: rgba(0, 0,0,.6);
+    backdrop-filter: blur(4px);
+}
+
+.friendCard__container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+.friendCard__invite {
+    background: transparent;
+    border: none;
+    border-left: 1px solid white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    color:rgb(184, 242, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        color: white;
+    }
+}
+
+.friendCard__name {
+    color: white;
+    font-size: 12px;
+    letter-spacing: 6px;
+}
+
+.friendCard__status {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+.friendCard__info {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 8px;
+    flex-direction: column;
+}
+
