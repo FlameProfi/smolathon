@@ -1,70 +1,88 @@
 const UserModel = require('../models/user-model');
-const FriendModel = require('../models/friends-model');
-const bcrypt = require('bcrypt');
-const uuid = require('uuid');
-const generatePassword = require("omgopass");
-const mailService = require('./mail-service');
-const tokenService = require('./token-service');
-const UserDto = require('../dtos/user-dto');
 const ApiError = require('../exceptions/api-error');
 
 
 
 class friendService {
-    async addFriend(name, recivedName) {
-        const friendData = await FriendModel.findOne({userName: name})
-        const senderData = await FriendModel.findOne({userName: recivedName})
-        if(friendData.requestFrineds.includes(recivedName)){
-            throw ApiError.BadRequest(`Вы уже отправили заявку пользователю ${name}`)
+    async subscribe(userName, friendName) {
+        const userData = await UserModel.findOne({userName: userName})
+        const friendData = await UserModel.findOne({userName: friendName})
+
+        if(userData.friends.friendRequests.includes(friendName)){
+            throw ApiError.BadRequest(`Вы уже отправили заявку пользователю ${friendName}`)
         }
 
-        friendData.requestFrineds.push(recivedName)
-        senderData.subscribe.push(name)
+        userData.friends.friendRequests.push(friendName)
+        friendData.friends.subscribers.push(userName)
+
+        userData.save();
         friendData.save();
-        senderData.save();
-        return senderData.friends
     }
 
-    async removeFriend(name, recivedName) {
-        const friendData = await FriendModel.findOne({userName: name}) // ОТПРАВИТЕЛЬ
-        const senderData = await FriendModel.findOne({userName: recivedName}) // ПОЛУЧАТЕЛЬ
-        if(!friendData.friends.includes(recivedName)){
-            throw ApiError.BadRequest(`Пользователь ${name} не является вашим другом`)
+    async removeFriend(userName, friendName) {
+        const userData = await UserModel.findOne({userName: userName}) // ПОЛЬЗОВАТЕЛЬ
+        const friendData = await UserModel.findOne({userName: friendName}) // УДАЛЯЕМЫЙ ДРУГ
+
+        if(!userData.friends.friends.includes(friendName)){
+            throw ApiError.BadRequest(`Пользователь ${userName} не является вашим другом`)
         }
-        friendData.friends.pull(recivedName)
-        senderData.friends.pull(name)
+
+        userData.friends.friends.pull(friendName)
+        friendData.friends.friends.pull(userName)
+
+        userData.save();
         friendData.save();
-        senderData.save();
     }
 
-    async acceptFriend(name, recivedName) {
-        const friendData = await FriendModel.findOne({userName: name}) // ПРИНИМАЕТ В ДРУЗЬЯ
-        const senderData = await FriendModel.findOne({userName: recivedName}) // ПОЛУЧАТЕЛЬ
-        if(friendData.friends.includes(recivedName)){
-            throw ApiError.BadRequest(`Вы уже друзья с пользователем ${name}`)
+    async acceptFriend(userName, friendName) {
+        const userData = await UserModel.findOne({userName: userName}) // ПОЛЬЗОВАТЕЛЬ
+        const friendData = await UserModel.findOne({userName: friendName}) // ПРИНИМАЕМЫЙ ДРУГ
+
+        if(userData.friends.friends.includes(friendName)){
+            throw ApiError.BadRequest(`Вы уже друзья с пользователем ${friendName}`)
         }
-        if(!friendData.subscribe.includes(recivedName)){
-            throw ApiError.BadRequest(`Ошибка`)
+        if(!userData.friends.subscribers.includes(friendName)){
+            throw ApiError.BadRequest(`Пользователя ${friendName} нет в ваших подписчиках`)
         }
-        friendData.subscribe.pull(recivedName)
-        senderData.requestFrineds.pull(name)
-        friendData.friends.push(recivedName)
-        senderData.friends.push(name)
+
+        userData.friends.subscribers.pull(friendName);
+        friendData.friends.friendRequests.pull(userName);
+
+        userData.friends.friends.push(friendName)
+        friendData.friends.friends.push(userName)
+
+        userData.save();
         friendData.save();
-        senderData.save();
     }
-    async dismissFriend(name, recivedName) {
-        const friendData = await FriendModel.findOne({userName: name}) // ОТПРАВИТЕЛЬ
-        const senderData = await FriendModel.findOne({userName: recivedName}) // ПОЛУЧАТЕЛЬ
-        if(!friendData.subscribe.includes(recivedName)){
-            throw ApiError.BadRequest(`Пользователя ${recivedName} нету в запросах`)
+    async dismissFriend(userName, friendName) {
+        const userData = await UserModel.findOne({userName: userName}) // ПОЛЬЗОВАТЕЛЬ
+        const friendData = await UserModel.findOne({userName: friendName}) // ОТКЛОНЯЕМЫЙ ПОЛЬЗОВАТЕЛЬ
+
+        if(!userData.friends.subscribers.includes(friendName)){
+            throw ApiError.BadRequest(`Пользователя ${friendName} не является вашим подписчиком`)
         }
-        friendData.subscribe.pull(recivedName)
-        senderData.requestFrineds.pull(name)
+
+        userData.friends.subscribers.pull(friendName)
+        friendData.friends.friendRequests.pull(userName)
+
+        userData.save();
         friendData.save();
-        senderData.save();
     }
     
+    async unsubscribe(userName, friendName) {
+        const userData = await UserModel.findOne({userName: userName})
+        const friendData = await UserModel.findOne({userName: friendName})
+
+        if(!userData.friends.friendRequests.includes(friendName)){
+            throw ApiError.BadRequest(`Вы не подписаны на пользователя ${friendName}`)
+        }
+
+        userData.friends.friendRequests.pull(friendName)
+        friendData.friends.subscribers.pull(userName)
+
+        userData.save();
+        friendData.save();
+    }
 
 }
 

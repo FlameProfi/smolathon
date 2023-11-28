@@ -1,4 +1,4 @@
-const userService = require('../service/user-service');
+const userService = require('../service/auth-service');
 const GameService = require('../service/game-service') 
 const ApiError = require('../exceptions/api-error');
 
@@ -11,16 +11,7 @@ async getMonument(req, res, next) {
         next(e);
     }
 }
-async getRating(req, res, next) {
-    try {
-        const users = await userService.getAllUsers();
-        const sortedUsers = users.sort((a, b) => a.winGames - b.winGames);
-        const cutSortedUsers = sortedUsers.splice(1, sortedUsers.length - 1)
-        return res.json(cutSortedUsers);
-    } catch (e) {
-        next(e);
-    }
-}
+
 }
 
 module.exports = new GameController();

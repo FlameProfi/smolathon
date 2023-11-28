@@ -1,24 +1,22 @@
-const userService = require('../service/user-service');
 const friendService = require('../service/friend-service') 
-const ApiError = require('../exceptions/api-error');
-const {validationResult} = require('express-validator');
+
 const FriendModel = require("../models/friends-model");
+const userModel = require('../models/user-model');
 
 class FriendController {
-    async addFriend(req, res, next) {
+    async subscribe(req, res, next) {
         try {
-            const {name, recivedName} = req.body;
-            await friendService.addFriend(name, recivedName);
+            const {userName, friendName} = req.body;
+            await friendService.subscribe(userName, friendName);
             return res.json('Пользователь добавлен в друзья')
-            // return res.redirect(process.env.CLIENT_URL);
         } catch (e) {
             next(e);
         }
     }
     async removeFriend(req, res, next) {
         try {
-            const {name, recivedName} = req.body;
-            await friendService.removeFriend(name, recivedName)
+            const {userName, friendName} = req.body;
+            await friendService.removeFriend(userName, friendName)
             return res.json('Пользователь удален из друзей')
         } catch (e) {
             next(e);
@@ -26,8 +24,8 @@ class FriendController {
     }
     async acceptFriend(req, res, next) {
         try {
-            const {name, recivedName} = req.body;
-            await friendService.acceptFriend(name, recivedName)
+            const {userName, friendName} = req.body;
+            await friendService.acceptFriend(userName, friendName)
             return res.json('Пользователь добавлен в друзья')
         } catch (e) {
             next(e);
@@ -35,37 +33,48 @@ class FriendController {
     }
     async dismissFriend(req, res, next) {
         try {
-            const {name, recivedName} = req.body;
-            await friendService.dismissFriend(name, recivedName)
+            const {userName, friendName} = req.body;
+            await friendService.dismissFriend(userName, friendName)
             return res.json('Заявка в друзья отклонена!')
         } catch (e) {
             next(e);
         }
     }    
-    async allFriends(req, res, next){
+
+    async unsubscribe(req, res, next) {
+        try {
+            const {userName, friendName} = req.body;
+            await friendService.unsubscribe(userName, friendName)
+        } catch (e) {
+
+        }
+    }
+
+    async getFriendsByName(req, res, next){
         try { 
-            const name = req.params.name;
-            const friendData = await FriendModel.findOne({userName: name})
-        return res.json(friendData.friends)
+            const userName = req.params.name;
+            const userData = await userModel.findOne({userName})
+            
+        return res.json(userData.friends.friends)
     } catch (e) {
         next(e)
     }
     }
-    async allSubscribers(req, res, next){
+    async getSubscribersByName(req, res, next){
         try {
-            const name = req.params.name;
-            const friendData = await FriendModel.findOne({userName: name})
-            return res.json(friendData.subscribe)
+            const userName = req.params.name;
+            const UserData = await userModel.findOne({userName})
+            return res.json(UserData.friends.subscribers)
         } catch (e) {
             next(e)
         }
 
     }
-    async allRequsted(req, res, next){
+    async getFriendRequestsByName(req, res, next){
         try {
-            const name = req.params.name;
-            const friendData = await FriendModel.findOne({userName: name})
-            return res.json(friendData.requestFrineds)     
+            const userName = req.params.name;
+            const UserData = await userModel.findOne({userName})
+            return res.json(UserData.friends.friendRequests)     
         } catch (e) {
             next(e)
         }
@@ -73,5 +82,6 @@ class FriendController {
     }
     
 }
+
 
 module.exports = new FriendController();
